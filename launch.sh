@@ -145,5 +145,6 @@ else
  
  echo "Anti CRASH server is : ON"
  
+ sudo service redis-server start
   ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./MASTER/masterbot.lua -l 1 -E
 fi
