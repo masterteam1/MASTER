@@ -1,6 +1,6 @@
 local function save_value(msg, name, value)
   if (not name or not value) then
-    return "Usage: !set var_name value"
+    return "استخدم : /save [TEXT]"
   end
   local hash = nil
   if msg.to.type == 'chat' or msg.to.type == 'channel'  then
@@ -8,12 +8,12 @@ local function save_value(msg, name, value)
   end
   if hash then
     redis:hset(hash, name, value)
-    return "Saved "..name
+    return "تم الحفظ."..name
   end
 end
 local function run(msg, matches)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "فقط للمشرفين عزيزي"
   end
   local name = string.sub(matches[1], 1, 50)
   local value = string.sub(matches[2], 1, 1000)
@@ -29,4 +29,4 @@ return {
   }, 
   run = run 
 }
-
+--MASTER TEAM -_-

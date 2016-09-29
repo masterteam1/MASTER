@@ -179,7 +179,8 @@ if is_chat_msg(msg) or is_super_group(msg) then
 				if strict == "yes" or to_chat then
 					kick_user(msg.from.id, msg.to.id)
 				end
-			end
+		end
+		
 			local is_photo_caption =  msg.media.caption and msg.media.caption:match("photo")--".jpg",
 			if is_muted(msg.to.id, 'Photo: yes') and msg.media.type:match("photo") or is_photo_caption and not msg.service then
 				delete_msg(msg.id, ok_cb, false)
@@ -295,4 +296,3 @@ return {
 	pre_process = pre_process
 }
 --End msg_checks.lua
---By @Rondoozle

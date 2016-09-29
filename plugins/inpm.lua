@@ -1,4 +1,11 @@
-﻿local function pre_process(msg)
+--" ╭━╮╭━╮╱╱╱╱╱╭╮               "
+--" ┃┃╰╯┃┃╱╱╱╱╭╯╰╮              "      
+--" ┃╭╮╭╮┣━━┳━┻╮╭╋━━┳━╮           "
+--" ┃┃┃┃┃┃╭╮┃━━┫┃┃┃━┫╭┫           "
+--" ┃┃┃┃┃┃╭╮┣━━┃╰┫┃━┫┃             "
+--" ╰╯╰╯╰┻╯╰┻━━┻━┻━━┻╯             "
+
+local function pre_process(msg)
 local to = msg.to.type
 local service = msg.service
 	if to == 'user' and msg.fwd_from then
@@ -90,9 +97,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 	end
     if matches[1] == 'join' then
 	local data = load_data(_config.moderation.data)
-	if matches[2]:lower() == 'english' and matches[3]:lower() == 'support' then
-		savelog(msg.to.id, name_log.." ["..msg.from.id.."] tried to join English support")
-		local target = 1041751030
+	if matches[2]:lower() == 'master' and matches[3]:lower() == 'su' then
+		savelog(msg.to.id, name_log.." ["..msg.from.id.."] يحاول الدخول الى مجموعة الدعم")
+		local target = 1093373203
 		local long_id = data[tostring(target)]['long_id']
 		if is_banned(msg.from.id, tostring(target)) then
 			return 'You are banned.'
@@ -111,9 +118,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local user = msg.from.peer_id
 		chat_add_user(chat, user, ok_cb, false)
 		channel_invite(channel, user, ok_cb, false)
-	elseif matches[2]:lower() == 'persian' and matches[3]:lower() == 'support' then
-		savelog(msg.to.id, name_log.." ["..msg.from.id.."] tried to join Persian support")
-		local target = 1017700355
+	elseif matches[2]:lower() == 'دعم' and matches[3]:lower() == 'ماستر' then
+		savelog(msg.to.id, name_log.." ["..msg.from.id.."] يحاول الدخول الى مجموعة الدعم")
+		local target = 1093373203
 		local long_id = data[tostring(target)]['long_id']
 		if is_banned(msg.from.id, tostring(target)) then
 			return 'You are banned.'
@@ -208,7 +215,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to TeleSeed!\n\nTo get a list of TeleSeed groups use /chats or /chatlist for a document list of chats.\n\nTo get a new TeleSeed group, contact a support group:\n\nFor English support, use: /join English support\n\nFor Persian support, use: /join Persian support\n\nFor more information, check out our channels:\n\n@TeleseedCH [English]\n@Iranseed [Persian]\n\nThanks for using @TeleSeed!"
+		text = "Hi!,\nfor see bot command send #superhelp"
      	return text
     end
 
@@ -243,16 +250,18 @@ end
 
 return {
     patterns = {
-	"^[#!/](help)$",
-	"^[#!/](pmhelp)$",
-	"^[#!/](superhelp)$",
+	----"^[#!/](help)$",
+	----"^[#!/](pmhelp)$",
+	----"^[#!/](superhelp)$",
     "^[#!/](chats)$",
     "^[#!/](chatlist)$",
     "^[#!/](join) (%d+)$",
-	"^[#!/](join) (.*) (support)$",
-    "^[#!/](kickme) (.*)$",
+	"^[#!/](join) (.*) (su)$",
+	"^[#!/](join) (.*) (ماستر)$",
+    "^[#!/](kkme) (.*)$",
     "^!!tgservice (chat_add_user)$",
     },
     run = run,
 	pre_process = pre_process
 }
+--MASTER TEAM -_-
