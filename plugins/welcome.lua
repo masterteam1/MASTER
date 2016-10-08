@@ -49,7 +49,8 @@ local function master(msg,matches)
     end
      if matches[1] == "chat_del_user" and group_tgservice_lock == 'no'  then 
        local bye_name = msg.action.user.username or msg.action.user.first_name
-       return "BYE @"..bye_name.." !"
+       local master = "BYE @"..bye_name.." !"
+       return reply_msg(msg.id, master, ok_cb, false)
    end 
 end
 return {
