@@ -14,6 +14,8 @@ local chat = msg.to.id
     local oscar = 'mate:'..msg.to.id 
     if redis:get(oscar) and msg.media and not is_momod(msg) then 
     delete_msg(msg.id, ok_cb, false) 
+    local reply = "🚨 تنبيه ⚠️ : مـمـنوع ارسال الصور والفيديوات وجميع الميديا هنا 🎬\n#عزيزي "..msg.from.first_name.."\n يرجى الالتزام بالقوانين لتجنب الطرد 🚫 \n#USERNAME: @"..(msg.from.username or " ")
+    reply_msg(msg.id, reply, ok_cb, true)
 end 
 
         return msg 
